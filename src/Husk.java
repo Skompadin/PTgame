@@ -26,6 +26,8 @@ public class Husk {
     }
 
     public void setHp(int hp) {
+        if (this.hp-hp <0)
+
         this.hp = hp;
     }
 

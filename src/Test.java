@@ -1,26 +1,24 @@
 import java.util.Scanner;
 public class Test {
 
-    public static int selectstage(Stage uc, Stage fc){
-        System.out.println("Select Stage");
-        System.out.println("1: Firebound Temple (Home)");
-        System.out.println("2: Undead Castle " + uc.getstatus());
-        System.out.println("3: Filth City " + fc.getstatus());
-        Scanner sc = new Scanner(System.in);
-        int stage = sc.nextInt();
-        return stage;
-    }
-
     public static int action(Stage b,Charakter pchar) {
         Scanner sc = new Scanner(System.in);
+       if (b.isPyre()){
+           System.out.println("1: Rest");
+           System.out.println("2: Travel");
+       }
+
         System.out.println("What do you want to do ?");
         System.out.println("1: Explore");
         System.out.println("2: Search Area");
         System.out.println("3: Consume Potion");
+
         if (b.isPyre()) {
             System.out.println("4: Rest");
         }
+
         int a = sc.nextInt();
+
         if (a==3){
             potionchoice(pchar);
         }
@@ -37,16 +35,17 @@ public class Test {
         int t = sc.nextInt();
         if (t==1){
             p.setHpPotion(p.getHpPotion()-1);
-            p.setChp(p.getChp()+50);
+            p.setChp(p.getChp()+100);
+        }else if (t==2){
+            p.setfPotion(p.getfPotion()-1);
+            p.setCfocus(p.getCfocus()+100);
+        }else{
+
+        }
+        return t;
+
         }
 
-
-
-        return sc.nextInt();
-    }
-
-
-    
 
     public static void consumepotion(Charakter p){
 

@@ -13,6 +13,8 @@ public class Charakter {
     private int mfocus;
     private int hpPotion;
     private int fPotion;
+    private int maxPotions;
+    private boolean figthing;
 
     public Charakter(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz, int cfocus, int mfocus, int hpPotion, int fPotion) {
         this.name = name;
@@ -28,6 +30,23 @@ public class Charakter {
         this.mfocus = mfocus;
         this.hpPotion = hpPotion;
         this.fPotion = fPotion;
+    }
+        //potion lvl
+
+
+
+
+    public int basicAttack(Charakter player){
+        double dmg;
+        if (player instanceof Knight){
+            dmg=player.getStr()*2 +player.getDex()+ player.getIntel()/2;
+        } else if (player instanceof Bandit){
+            dmg=player.getStr() + player.getDex()*2+ player.getIntel()/2;
+        }else{
+            dmg=player.getStr()/2 + player.getDex() + player.getIntel()*2;
+        }
+    int aDmg = (int) dmg;
+    return aDmg;
     }
 
     public int getMhp() {

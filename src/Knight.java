@@ -19,6 +19,11 @@ public class Knight extends Charakter {
         return dmg;
     }
 
+    public int getArmor() {
+        return armor;
+    }
 
-
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
 }

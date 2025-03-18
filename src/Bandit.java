@@ -11,4 +11,12 @@ public class Bandit extends Charakter {
     public String toString() {
         return getName() + " the " + getJob();
     }
+
+    public int getDoge() {
+        return doge;
+    }
+
+    public void setDoge(int doge) {
+        this.doge = doge;
+    }
 }

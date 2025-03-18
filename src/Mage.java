@@ -12,11 +12,11 @@ public class Mage extends Charakter {
         return getName() + " the " + getJob();
     }
 
+    public int getRegen() {
+        return regen;
+    }
 
-
-
-
-
-
-
+    public void setRegen(int regen) {
+        this.regen = regen;
+    }
 }

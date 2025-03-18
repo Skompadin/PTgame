@@ -6,33 +6,10 @@ public class Main {
 
     Scanner sc = new Scanner(System.in);
 
-        String name;
-        System.out.println("Name your Character");
-        name = sc.nextLine();
+    ArrayList<Charakter> pc = new ArrayList<>();
 
-        int choice;
+    pc.add(Menu.chargen());
 
-        ArrayList<Charakter> pc = new ArrayList<>();
-
-        do {
-            System.out.println("Chose your Class:");
-            System.out.println("1:Knight");
-            System.out.println("2:Bandit");
-            System.out.println("3:Mage");
-            choice=sc.nextInt();
-            if (choice != 1 && choice != 2 && choice != 3){ System.out.println("Try again");}
-        } while (choice != 1 && choice != 2 && choice != 3);
-
-        if (choice == 1) {
-            Knight pchar = new Knight(name,"Knight",20, 15, 10, 300, 300, 0, 200, 200, 200, 4,2,10);
-            pc.add(pchar);
-        } else if (choice == 2) {
-            Bandit pchar = new Bandit(name,"Bandit", 15, 20, 10, 250, 250, 0, 200, 250, 250, 3,3,10);
-            pc.add(pchar);
-        } else {
-            Mage pchar = new Mage(name,"Mage", 10, 15, 20, 200, 200, 0, 200, 300, 300, 2,4,10);
-            pc.add(pchar);
-        }
         // ((Cat) animal).meow();
        // Charakter pchar = pc.get(0);
         //int dmg = ((Knight)pchar).getdmg();
@@ -46,12 +23,39 @@ public class Main {
         Stages.add(ft);
         Stages.add(uc);
         Stages.add(fc);
+        Stage cStage = Stages.get(0);
+        //int stage = Menu.selectstage(uc,fc) -1;
+        //Stage cStage =Stages.get(stage-1);
+        System.out.println("You are at "+cStage.getName());
 
-        int stage = Test.selectstage(uc,fc) -1;
-        System.out.println("You are at "+Stages.get(stage).getName());
+        int home = Menu.stagemenuhome(cStage,pc.get(0));
+    do {
+        if (home == 1) {
+            Menu.stageactionrest(pc.get(0));
 
-        int a = Test.action(Stages.get(stage),pc.get(0));
+        } else if (home == 2) {
+            Menu.selectstage(Stages.get(1),Stages.get(2));
 
+        } else {
+            //findplace
+        }
+
+    }while();
+
+
+
+
+    // while(deadorhome = true)
+
+
+
+
+
+
+
+        //int a = Test.action(Stages.get(stage),pc.get(0));
+
+        //Combat.fight(pc.get(0),uc);
 
 
     }
