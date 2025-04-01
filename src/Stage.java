@@ -4,6 +4,7 @@ public class Stage {
     private int lvl;
     private boolean cleared;
     private int encounter;
+    private int cencounter;
     private boolean pyre;
 
     public Stage(String name, int lvl, boolean cleared, int encounter, boolean pyre) {
@@ -11,6 +12,7 @@ public class Stage {
         this.lvl = lvl;
         this.cleared = cleared;
         this.encounter = encounter;
+        this.cencounter = 0;
         this.pyre = pyre;
     }
 
@@ -54,6 +56,14 @@ public class Stage {
 
     public void setEncounter(int encounter) {
         this.encounter = encounter;
+    }
+
+    public int getCencounter() {
+        return cencounter;
+    }
+
+    public void setCencounter(int cencounter) {
+        this.cencounter = cencounter;
     }
 
     public boolean isPyre() {

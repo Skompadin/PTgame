@@ -34,14 +34,25 @@ public class Menu {
         return pc.get(0);
     }
 
-    public static int selectstage(Stage uc, Stage fc){
+    public static Stage travel(Stage cStage,Stage ft,Stage uc, Stage fc){
+        Stage gotoStage;
+
         System.out.println("Select Stage");
         System.out.println("1: Firebound Temple (Home)");
         System.out.println("2: Undead Castle " + uc.getstatus());
         System.out.println("3: Filth City " + fc.getstatus());
         Scanner sc = new Scanner(System.in);
         int stage = sc.nextInt();
-        return stage;
+        if (stage==1){
+            gotoStage = ft;
+        } else if (stage == 2 ) {
+            gotoStage = uc;
+        }else {
+            gotoStage = fc;
+        }
+
+
+        return gotoStage;
     }
 
     public static int  combatmenu1 (Charakter player){
@@ -54,6 +65,50 @@ public class Menu {
         int action = sc.nextInt();
         return action;
     }
+
+    public static void placemenu(Stage place, Charakter player,Stage home, Stage a,Stage b){
+        int value;
+        if (place.getName() == "Firebound Temple"){
+          value=stagemenuhome(place,player);
+            if (value == 1){
+                stageactionrest(player);
+                // hier kommt noch was
+            } else if (value == 2) {
+               place=travel(place,home,a,b);
+
+            }else {
+                //upgrade path ??
+            }
+
+
+        } else {
+
+        }
+
+
+    }
+
+    public static void nothomemenu(Stage place, Charakter player,Stage home, Stage a,Stage b) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What do you want to do ?");
+
+        System.out.println("1: Explore");
+        System.out.println("2: Search the area");
+        System.out.println("3: Travel");
+        int i = sc.nextInt();
+        if (i==1){
+            Combat.fight(player,place);
+        } else if (i==2) {
+            // Chance for find else figth
+            Combat.fight(player,place);
+        }else{
+           place = travel(place, home,a,b);
+        }
+
+
+    }
+
+
 
     public static int stagemenuhome(Stage s, Charakter p){
         Scanner sc = new Scanner(System.in);
@@ -83,7 +138,7 @@ public class Menu {
                 end = true;
             }
 
-        }while(end);
+        }while(end == false);
     }
 
     public static void lvlup(Charakter p){
