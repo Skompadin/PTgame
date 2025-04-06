@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Charakter {
 
     private String name;
@@ -14,27 +16,28 @@ public class Charakter {
     private int hpPotion;
     private int fPotion;
     private int maxPotions;
-    private boolean figthing;
+    private Map world;
 
-    public Charakter(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz, int cfocus, int mfocus, int hpPotion, int fPotion) {
+    public Charakter(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz,
+                     int cfocus, int mfocus, int hpPotion, int fPotion, int maxPotions, Map world) {
         this.name = name;
         this.job = job;
         this.str = str;
         this.dex = dex;
         this.intel = intel;
         this.chp = chp;
-        this.mhp = str*10+100;
+        this.mhp = mhp;
         this.lvl = lvl;
         this.soulz = soulz;
         this.cfocus = cfocus;
         this.mfocus = mfocus;
         this.hpPotion = hpPotion;
         this.fPotion = fPotion;
+        this.maxPotions = maxPotions;
+        this.world = world;
     }
-        //potion lvl
 
-
-
+    //potion lvl
 
     public int basicAttack(Charakter player){
         double dmg;
@@ -49,6 +52,40 @@ public class Charakter {
     return aDmg;
     }
 
+    public void potionheal() {
+        int heal=50;
+        if (heal + this.chp > this.mhp) {
+            this.chp = this.mhp;
+        }   else {this.chp = this.chp+heal;
+            }
+    }
+
+    public void potionfocus() {
+        int plusfocus=50;
+        if (plusfocus + this.cfocus > this.mfocus) {
+            this.cfocus = this.mfocus;
+        }   else {this.cfocus = this.cfocus+plusfocus;
+        }
+    }
+
+    public void setChp(int chp) {
+        if (this.chp - chp > 0){
+        this.chp = chp;
+        }else{
+            this.chp = 0;
+        }
+
+    }
+
+    public boolean crit(int mod){
+        Random rn = new Random();
+        int crit = rn.nextInt(100) + 1;
+        boolean hit =false;
+        int chance = getDex()*mod;
+        if (chance > 90){chance = 90;}
+        if (crit <= chance) {hit = true; }
+        return hit;
+    }
     public int getMhp() {
         return mhp;
     }
@@ -61,11 +98,6 @@ public class Charakter {
         return chp;
     }
 
-    public void setChp(int chp) {
-        if (chp + this.chp > this.chp) {
-            this.chp = this.mhp;
-        } else {this.chp = this.chp+chp;  }
-    }
     public String getName() {
         return name;
     }
@@ -153,4 +185,27 @@ public class Charakter {
     public void setJob(String job) {
         this.job = job;
     }
+
+    public Map getWorld() {
+        return world;
+    }
+
+    public void setWorld(Map world) {
+        this.world = world;
+    }
+
+    public int getMaxPotions() {
+        return maxPotions;
+    }
+
+    public void setMaxPotions(int maxPotions) {
+        this.maxPotions = maxPotions;
+    }
+
+
+
+
+
 }
+
+
