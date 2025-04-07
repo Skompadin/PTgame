@@ -15,7 +15,7 @@ public class Stage {
         this.cencounter = 0;
         this.pyre = pyre;
     }
-
+    //cleared status is supposed to determine if a the next stage is accessible
     public String getstatus() {
         String status;
         if (this.cleared == true) {

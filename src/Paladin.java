@@ -1,3 +1,5 @@
+// Wip don't look
+// class for knight to upgrade to once upgrade is fully implemented
 public class Paladin extends Knight{
     private int faith;
     private int invocations;

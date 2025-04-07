@@ -15,7 +15,7 @@ public class Mob {
         this.hp = hp;
         this.lvl = lvl;
     }
-
+    // mob gets created and returned based on current stage and progress
     public static Mob mobgen(Charakter player){
         String name ="Husk";
         int hp = 0;
@@ -38,6 +38,25 @@ public class Mob {
         mob1.setMobsoulz((mob1.lvl*200)+(player.getWorld().getPlace().getCencounter()*20));
         return mob1;
     }
+    // mobs turn: when chared is false(in Combat.fight) has a chance to start a charge attack
+    // if it dont it just attack if it charges a warning gets displayed and the mob dosent attack
+    // if chared was true the mob attacks at inceased power than charge goes to false
+    public static void mobattack(Charakter player, Mob mob1,boolean def){
+        Random rn = new Random();
+        int charge = rn.nextInt(100) + 1;
+
+        if(charge<21){
+            System.out.println(mob1.getName()+"prepares for an powerfull swing!");
+            mob1.setCharged(true);
+        }else {
+            if (player instanceof Knight) {
+                Knight.defKnight(player, mob1, def);
+            } else if (player instanceof Bandit) {
+                Bandit.defBandit(player, mob1, def);
+            } else {
+                Mage.defMage(player, mob1, def);
+            }
+        }}
 
     public int getLvl() {
         return lvl;
@@ -51,6 +70,7 @@ public class Mob {
         return hp;
     }
 
+        //mob gets dmg aplied
     public void setHp(int dmg) {
         if (this.hp - dmg < 0){
             this.hp = 0;
@@ -90,26 +110,11 @@ public class Mob {
         this.charged = charged;
     }
 
-    public static void mobattack(Charakter player, Mob mob1,boolean def){
-        Random rn = new Random();
-        int charge = rn.nextInt(100) + 1;
 
-        if(charge<21){
-            System.out.println(mob1.getName()+"prepares for an powerfull swing!");
-            mob1.setCharged(true);
-        }else{
-            if (player instanceof Knight ){
-                Knight.defKnight(player,mob1,def);
-            } else if (player instanceof Bandit) {
-                Bandit.defBandit(player,mob1,def);
-            }else{
-                Mage.defMage(player,mob1,def);
-            }
-        }
 
 
 
 
 
     }
-}
+

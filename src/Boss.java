@@ -6,7 +6,9 @@ public class Boss extends Mob{
         super(name, str, hp, lvl);
         this.loot = loot;
     }
-
+        // as a last encounter on a stage that is not "home"
+        // a stronger enemy gets created
+        // also drops item 4 char upgrade (wip)
     public static Boss bossgen(Charakter player){
 
             String name ="Husk";

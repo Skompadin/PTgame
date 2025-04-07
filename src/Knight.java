@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class Knight extends Charakter {
-
+    /**
+     * mostly the same as bandit
+     */
     private int armor;
 
     public Knight(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz, int cfocus, int mfocus, int hpPotion, int mhPotion, int fPotion, int mfPotoin, int maxPotions, boolean upgradeItem, Map world, int armor) {
@@ -18,15 +20,26 @@ public class Knight extends Charakter {
         Scanner sc = new Scanner(System.in);
         boolean def = false;
         System.out.println("1: Brace");
-        System.out.println("2: Heavy Blow");
-        System.out.println("3: Juggernaut");
+        System.out.println("2: Heavy Blow (50fp)");
+        System.out.println("3: Juggernaut (80fp)");
         int a = sc.nextInt();
 
         if (a == 1){def=true;
         }else if (a==2){
-            heavyblow(player, mob1);
+            if (player.getCfocus()>49){
+                heavyblow(player, mob1);
+                player.setCfocus(player.getCfocus()-50);
+            }else {
+                System.out.println("You tryed to use a skill but lost your Turn ");
+            }
+
         }else{
+            if (player.getCfocus()>79){
             juggernaut(player, mob1);
+            player.setCfocus(player.getCfocus()-80);
+            }else {
+                System.out.println("You tryed to use a skill but lost your Turn ");
+            }
         }
         return def;
     }
@@ -36,7 +49,7 @@ public class Knight extends Charakter {
         double dmg = mob1.getStr();
         if (mob1.isCharged()){dmg=dmg*2;}
         int prot = ((Knight)player).getArmor()*2;
-        if (def){dmg=dmg-(dmg/100)*(prot*3);
+        if (def){dmg=dmg-(dmg/100)*(prot*2);
         }else{dmg=dmg-(dmg/100)*prot;}
         System.out.println(mob1.getName() + " attacks " + player.getName() + " for " + (int)dmg + " Damage");
         player.setChp(player.getChp() - (int)dmg);

@@ -24,19 +24,34 @@ public class Mage extends Charakter {
         this.regen = regen;
     }
 
-    public boolean skillmenuMage(Charakter player, Mob bla){
+    /**
+     * mostly the same as bandit
+     */
+
+    public boolean skillmenuMage(Charakter player, Mob mob1){
         Scanner sc = new Scanner(System.in);
         boolean def = false;
         System.out.println("1: Shield");
-        System.out.println("2: Soul Blast");
-        System.out.println("3: Chaos Barrage");
+        System.out.println("2: Soul Blast (60fp)");
+        System.out.println("3: Chaos Barrage (120fp)");
         int a = sc.nextInt();
 
         if (a == 1){def=true;
         }else if (a==2){
-            soulblast(player, bla);
+            if (player.getCfocus()>59){
+            soulblast(player, mob1);
+                player.setCfocus(player.getCfocus()-60);
+            }else {
+                System.out.println("You tryed to use a skill but lost your Turn ");
+            }
+
         }else{
-            chaosbarrage(player, bla);
+            if (player.getCfocus()>119){
+            chaosbarrage(player, mob1);
+                player.setCfocus(player.getCfocus()-120);
+            }else {
+                System.out.println("You tryed to use a skill but lost your Turn ");
+            }
         }
         return def;
     }

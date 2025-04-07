@@ -4,26 +4,37 @@ import java.util.Scanner;
 public class Charakter {
 
     private String name;
+    //job has the name of the class like Knight
     private String job;
     private int str;
     private int dex;
     private int intel;
+    //Current healthpoint and Maxhealthpoints
     private int chp;
     private int mhp;
     private int lvl;
+    //exp currency
     private int soulz;
+    //current focus and max focus basically mana
     private int cfocus;
     private int mfocus;
+    //health potions current and max same fpr focus potions
+    // max for potions carried combined
     private int hpPotion;
     private int mhPotion;
     private int fPotion;
     private int mfPotion;
     private int maxPotions;
+
     private boolean upgradeItem;
+    //has the stages for navigation and current position
     private Map world;
+    //ends game if true
+    private boolean exit;
 
     public Charakter(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz,
                      int cfocus, int mfocus, int hpPotion, int mhPotion, int fPotion, int mfPotion, int maxPotions, boolean upgradeItem, Map world) {
+
         this.name = name;
         this.job = job;
         this.str = str;
@@ -46,8 +57,8 @@ public class Charakter {
 
 
 
-    //potion lvl
-
+    // dmg calculation for basic atk dmg and as base for skill dmg
+    // casted into an int to not have awkward hp counts
     public int basicAttack(Charakter player){
         double dmg;
         if (player instanceof Knight){
@@ -60,7 +71,8 @@ public class Charakter {
     int aDmg = (int) dmg;
     return aDmg;
     }
-
+        // using a health potion restores the Characters current hp "chp"
+        // but not over the Max hp "mhp"
     public void potionheal() {
         int heal=50;
         if (heal + this.chp > this.mhp) {
@@ -68,7 +80,7 @@ public class Charakter {
         }   else {this.chp = this.chp+heal;
             }
     }
-
+        // same as potionheal but for focus
     public void potionfocus() {
         int plusfocus=50;
         if (plusfocus + this.cfocus > this.mfocus) {
@@ -85,7 +97,8 @@ public class Charakter {
         }
 
     }
-
+        // calculation for critikal hits
+        // based on dex with a modifiyer for Bandit and some skills
     public boolean crit(int mod){
         Random rn = new Random();
         int crit = rn.nextInt(100) + 1;
@@ -95,10 +108,12 @@ public class Charakter {
         if (crit <= chance) {hit = true; }
         return hit;
     }
+        // config for potions adjusts amount of health potions
+        // and focus potion based on Max potions
     public void potionconfig(){
         Scanner sc = new Scanner(System.in);
         System.out.println("You have " + getMhPotion()+"Health potions and "+ getMfPotion() +"Focus potions");
-        System.out.println("You can have" + getMaxPotions() +" choose how many Healh potins you want to have the rest will be Focus Potions");
+        System.out.println("You can have" + getMaxPotions() +" choose how many Healh potions you want to have the rest will be Focus Potions");
         int a = sc.nextInt();
         if (a<getMaxPotions()){
             setMhPotion(a);
@@ -250,10 +265,9 @@ public class Charakter {
         this.maxPotions = maxPotions;
     }
 
+    public boolean isExit() {return exit;}
 
-
-
-
+    public void setExit(boolean exit) {this.exit = exit;}
 }
 
 

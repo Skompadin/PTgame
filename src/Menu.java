@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 public class Menu {
-
+    //Charakter generation
     public static Charakter chargen(Map world){
 
         Scanner sc = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Menu {
         }
         return pc.get(0);
     }
-
+        //moving between stages
     public static void travel(Charakter player){
 
         System.out.println("Select Stage");
@@ -54,7 +54,7 @@ public class Menu {
         }
 
     }
-
+        //choose actions in combat
     public static int  combatmenu1 (Charakter player){
 
         Scanner sc = new Scanner(System.in);
@@ -65,22 +65,27 @@ public class Menu {
         int action = sc.nextInt();
         return action;
     }
+
+        //drink potions to restore health or focus
     public static void potionchoice(Charakter player){
         Scanner sc = new Scanner(System.in);
         System.out.println("1: Health Potion ( "+player.getHpPotion()+" )");
-        System.out.println("2: Focus Potion ( "+player.getCfocus()+" )");
+        System.out.println("2: Focus Potion ( "+player.getfPotion()+" )");
         System.out.println("3: Back");
         int potion = sc.nextInt();
         if(potion==1){
             if (player.getHpPotion()>0){
                 player.setHpPotion(player.getHpPotion()-1);
                 player.potionheal();
-            }else {}
+            }else if(player.getfPotion() > 0) {
+                    player.setfPotion(player.getfPotion()- 1);
+                    player.potionfocus();
 
-        }
 
-    }
+            }}}
 
+
+            //opens menus depended on stage
     public static void placemenu(Charakter player){
         if (player.getWorld().getPlace() ==player.getWorld().getHome() ){
 
@@ -91,7 +96,7 @@ public class Menu {
         }
 
     }
-
+        //menu for stages that are not the home stage
     public static void nothomemenu(Charakter player) {
         Scanner sc = new Scanner(System.in);
 
@@ -111,6 +116,9 @@ public class Menu {
             travel(player);
         }
     }
+
+        // in a stage that is not the home stage find some exp
+        // or get attacked
     public static void search(Charakter player){
         Random rn = new Random();
         int find = rn.nextInt(100) + 1;
@@ -125,7 +133,7 @@ public class Menu {
 
     }
 
-
+        // opens menu when on home stage
     public static void stagemenuhome(Charakter player){
         Scanner sc = new Scanner(System.in);
 
@@ -133,22 +141,24 @@ public class Menu {
 
         System.out.println("1: Rest");
         System.out.println("2: Travel");
-        System.out.println("3: Search the Tempelgrounds");
+        System.out.println("3: Search the Tempelgrounds");//wip
         System.out.println("4: Quit ");
         boolean back = false;
         int a = sc.nextInt();
-        System.out.print("\033[H\033[2J");
+
 
         if (a == 1) {
                 restmenu(player);
             } else if (a == 2) {
                 travel(player);
             } else if (a == 3) {
-                //upgarde path
+                homesearch(player);
             } else {
-                //quitgame
+                player.setExit(true);
             }
         }
+        // when conditoins are met player can upgrade their class for exaple
+        // from Knight to Paladin (wip)
     public static void homesearch(Charakter player){
         Scanner sc = new Scanner(System.in);
 
@@ -199,13 +209,15 @@ public class Menu {
 
 
     }
-
+    //when rest gets choosen in menu on home stage
+    //player focus and Hp get restored
     public static void restmenu(Charakter player){
         Scanner sc = new Scanner(System.in);
         player.setCfocus(player.getMfocus());
         player.setChp(player.getMhp());
         // restore potions
         boolean end = false;
+        //
         do{
             System.out.println("1: Lvl Up");
             System.out.println("2: Split your Potions");
@@ -220,7 +232,8 @@ public class Menu {
             }
         }while(end == false);
     }
-
+    // attribute increases are bought for souls
+    // every increase raises the lvl which raises the costs
     public static void lvlup(Charakter p){
         Scanner sc = new Scanner(System.in);
         boolean close = false;
@@ -265,19 +278,7 @@ public class Menu {
         }while (close=false);
 
     }
-    public static void Upgradepath(Charakter player){
-        // knight Shrine / bandit chest / mage book
-        if(player instanceof Knight){
 
-        } else if (player instanceof Mage) {
-
-        }else{
-
-        }
-
-
-        if(player.getWorld().getLvlone().isCleared()){}
-    }
 
 
 

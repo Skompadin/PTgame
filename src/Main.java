@@ -9,7 +9,7 @@ public class Main {
         Stage ft = new Stage("Firebound Temple",0,true,0,true);
         Stage uc = new Stage("Undead Castle",1,false,5,false);
         Stage fc = new Stage("Filth City",2,false,7,false);
-        //fill the world with stages
+        //fill the world with stages to be used as Charter attribute for navigation
         Map world = new Map (ft,uc,fc);
 
     // Character generation
@@ -17,13 +17,13 @@ public class Main {
     pc.add(Menu.chargen(world));
     Charakter player = pc.get(0);
 
-    boolean exit=false;
+
 
         do {
 
             System.out.println("You are at "+ player.getWorld().getPlace().getName());
             Menu.placemenu(player);
 
-        }while(!exit);
+        }while(!player.isExit());
     }
 }

@@ -23,23 +23,36 @@ public class Bandit extends Charakter {
         this.doge = doge;
     }
 
-    public boolean skillmenuBandit(Charakter player, Mob bla){
+    //menu that opens in combat when playing as Bandit
+    public boolean skillmenuBandit(Charakter player, Mob mob1){
         Scanner sc = new Scanner(System.in);
         boolean def = false;
         System.out.println("1: Doge");
-        System.out.println("2: Twinstrike");
-        System.out.println("3: Hidden Blade");
+        System.out.println("2: Twinstrike (70fp)");
+        System.out.println("3: Hidden Blade (90fp)");
         int a = sc.nextInt();
 
         if (a == 1){def=true;
             }else if (a==2){
-                twinstrike(player, bla);
+            if (player.getCfocus()>69){
+                twinstrike(player, mob1);
+                player.setCfocus(player.getCfocus()-70);
+            }else {
+                System.out.println("You tryed to use a skill but lost your Turn ");
+            }
                 }else{
-                    hiddenblade(player, bla);
+            if (player.getCfocus()>89){
+                    hiddenblade(player, mob1);
+                player.setCfocus(player.getCfocus()-90);
+            }else {
+                System.out.println("You tryed to use a skill but lost your Turn ");
+            }
                 }
         return def;
     }
-
+        //Character gets hit and some modifier get applied based on skills used
+        //when def gets set true by using the defensive skill in combat
+        //dodge chance gets increased but never over 90%
     public static void defBandit(Charakter player,Mob mob1,boolean def){
         Random rn = new Random();
         int hit = rn.nextInt(100) + 1;
@@ -60,11 +73,13 @@ public class Bandit extends Charakter {
 
 
 
-
+        // Combat Skill for Bandit hits twice and is more likely to crit but at lower base dmg
     public void twinstrike(Charakter player, Mob bla) {
         int mod = 3;
         boolean didcrit = crit(mod);
-        int dmg = player.basicAttack(player);
+        double dmg1 = player.basicAttack(player)*0.8;
+        int dmg = (int)dmg1;
+
         if (didcrit) {
             dmg = dmg*2;
             System.out.println(player.getName() + " attacks " + bla.getName() + " for " + dmg + " critical damage. ");
@@ -82,7 +97,7 @@ public class Bandit extends Charakter {
             bla.setHp(dmg);
         }
     }
-
+        // Combat skill for Bandit base dmg but high chance of crit
     public void hiddenblade(Charakter player, Mob bla){
         int mod = 5;
         boolean didcrit = crit(mod);
