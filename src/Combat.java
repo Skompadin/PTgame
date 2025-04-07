@@ -42,7 +42,7 @@ public class Combat {
                         }
 
 
-                            } else if (menu1 == 2) {
+                    } else if (menu1 == 2) {
                             if (player instanceof Knight ){
                                 def= ((Knight) player).skillmenuKnight(player, mob1);
 
@@ -55,6 +55,11 @@ public class Combat {
                                     Menu.potionchoice(player);
                                 }
                 } while (menuend == false);
+
+                System.out.println(" ");
+                Thread.sleep(2000);
+
+                System.out.println(player.getName() + " Hp: " + player.getChp() + "  --------  " + mob1.getName() + " HP: " + mob1.getHp());
 
                 System.out.println(" ");
                 Thread.sleep(2000);
@@ -86,7 +91,7 @@ public class Combat {
                 player.setChp(player.getMhp());
                 player.getWorld().setPlace(player.getWorld().getHome());
             }else{
-                System.out.println(mob1.getName()+"was defeated you gained "+mob1.getMobsoulz());
+                System.out.println(mob1.getName()+"was defeated you gained "+mob1.getMobsoulz() +" Soulz");
                 player.setSoulz(player.getSoulz()+ mob1.getMobsoulz());
                 player.getWorld().getPlace().setCencounter(player.getWorld().getPlace().getCencounter()+1);
             }

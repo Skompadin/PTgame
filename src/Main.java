@@ -15,33 +15,15 @@ public class Main {
     // Character generation
     ArrayList<Charakter> pc = new ArrayList<>();
     pc.add(Menu.chargen(world));
-
     Charakter player = pc.get(0);
 
+    boolean exit=false;
 
-        boolean exit=false;
-    do {
+        do {
 
-        System.out.println("You are at "+ player.getWorld().getPlace().getName());
-        Menu.placemenu(player);
+            System.out.println("You are at "+ player.getWorld().getPlace().getName());
+            Menu.placemenu(player);
 
-    }while(!exit);
-
-
-
-
-    // while(deadorhome = true)
-
-
-
-
-
-
-
-        //int a = Test.action(Stages.get(stage),pc.get(0));
-
-        //Combat.fight(pc.get(0),uc);
-
-
+        }while(!exit);
     }
 }

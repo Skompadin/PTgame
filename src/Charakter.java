@@ -17,13 +17,13 @@ public class Charakter {
     private int hpPotion;
     private int mhPotion;
     private int fPotion;
-    private int mfPotoin;
+    private int mfPotion;
     private int maxPotions;
     private boolean upgradeItem;
     private Map world;
 
     public Charakter(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz,
-                     int cfocus, int mfocus, int hpPotion, int mhPotion, int fPotion, int mfPotoin, int maxPotions, boolean upgradeItem, Map world) {
+                     int cfocus, int mfocus, int hpPotion, int mhPotion, int fPotion, int mfPotion, int maxPotions, boolean upgradeItem, Map world) {
         this.name = name;
         this.job = job;
         this.str = str;
@@ -38,7 +38,7 @@ public class Charakter {
         this.hpPotion = hpPotion;
         this.mhPotion = mhPotion;
         this.fPotion = fPotion;
-        this.mfPotoin = mfPotoin;
+        this.mfPotion = mfPotion;
         this.maxPotions = maxPotions;
         this.upgradeItem = upgradeItem;
         this.world = world;
@@ -97,12 +97,12 @@ public class Charakter {
     }
     public void potionconfig(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("You have " + getMhPotion()+"Health potions and "+ getMfPotoin() +"Focus potions");
+        System.out.println("You have " + getMhPotion()+"Health potions and "+ getMfPotion() +"Focus potions");
         System.out.println("You can have" + getMaxPotions() +" choose how many Healh potins you want to have the rest will be Focus Potions");
         int a = sc.nextInt();
         if (a<getMaxPotions()){
             setMhPotion(a);
-            setMfPotoin(getMaxPotions()- getMhPotion());
+            setMfPotion(getMaxPotions()- getMhPotion());
         }
 
 
@@ -118,12 +118,12 @@ public class Charakter {
         this.upgradeItem = upgradeItem;
     }
 
-    public int getMfPotoin() {
-        return mfPotoin;
+    public int getMfPotion() {
+        return mfPotion;
     }
 
-    public void setMfPotoin(int mfPotoin) {
-        this.mfPotoin = mfPotoin;
+    public void setMfPotion(int mfPotion) {
+        this.mfPotion = mfPotion;
     }
 
     public int getMhPotion() {

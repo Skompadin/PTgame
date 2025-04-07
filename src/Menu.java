@@ -137,8 +137,9 @@ public class Menu {
         System.out.println("4: Quit ");
         boolean back = false;
         int a = sc.nextInt();
+        System.out.print("\033[H\033[2J");
 
-            if (a == 1) {
+        if (a == 1) {
                 restmenu(player);
             } else if (a == 2) {
                 travel(player);
@@ -174,7 +175,12 @@ public class Menu {
                     System.out.println("art chosen to carry mine light into the land that hath forgotten it.");
                     System.out.println("Take up thy sword an vanquish the darkness that hath choked the light from this world.");
                     System.out.println("With mine blessing as thy strength and mine light as thy guide");
-                    System.out.println("thou shall  confound the eternal night and shall see the sun rise once again");
+                    System.out.println("thou shall shatter the eternal night thou and shall see the sun rise once again");
+                    System.out.println(" ");
+                    System.out.println("You have become a Paladin bound to the Goddess of light and vengeance ");
+                    System.out.println(" Your might has increased");
+                    player = ((Paladin)player);
+                    ((Paladin) player).setFaith(3);
                     }else{
                         System.out.println("Your prayers remain unheard maybe something is missing");
                     }
