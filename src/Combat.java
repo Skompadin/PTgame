@@ -63,7 +63,7 @@ public class Combat {
                 System.out.println(" ");
                 Thread.sleep(2000);
 
-                System.out.println(player.getName() + " Hp: " + player.getChp() +" Focus:"+player.getCfocus()+ "  --------  " + mob1.getName() + " HP: " + mob1.getHp());
+
 
                 System.out.println(" ");
                 Thread.sleep(2000);
@@ -86,12 +86,13 @@ public class Combat {
                     }
                     Thread.sleep(2000);
                     //combat status
-                    System.out.println(player.getName() + " Hp: " + player.getChp() + "  --------  " + mob1.getName() + " HP: " + mob1.getHp());
+                    System.out.println(player.getName() + " Hp: " + player.getChp() +" Focus:"+player.getCfocus()+ "  --------  " + mob1.getName() + " HP: " + mob1.getHp());
+                    System.out.println(" ");
                 }
                 //combat ends when mob or player dies
             } while (player.getChp() > 0 && mob1.getHp() > 0);
                 // combat aftermath if player dies
-            if (player.getChp()==0) {
+            if (player.getChp()<1) {
                 System.out.println("You Died");
                 System.out.println("Your Body reforms at the last place you rested and you lost your souls");
                 player.setChp(player.getMhp());

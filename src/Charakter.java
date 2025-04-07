@@ -90,7 +90,7 @@ public class Charakter {
     }
 
     public void setChp(int chp) {
-        if (this.chp - chp > 0){
+        if (chp > 0){
         this.chp = chp;
         }else{
             this.chp = 0;

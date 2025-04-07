@@ -36,7 +36,7 @@ public class Menu {
     }
         //moving between stages
     public static void travel(Charakter player){
-
+        System.out.println("Where are your travels lead you");
         System.out.println("Select Stage");
         System.out.println("1: Firebound Temple (Home)");
         System.out.println("2: Undead Castle " + player.getWorld().getLvlone().getstatus());
@@ -58,17 +58,20 @@ public class Menu {
     public static int  combatmenu1 (Charakter player){
 
         Scanner sc = new Scanner(System.in);
+
         System.out.println("1 Attack");
         System.out.println("2 Skill");
         System.out.println("3 Potions");
 
         int action = sc.nextInt();
+
         return action;
     }
 
         //drink potions to restore health or focus
     public static void potionchoice(Charakter player){
         Scanner sc = new Scanner(System.in);
+        System.out.println(" ");
         System.out.println("1: Health Potion ( "+player.getHpPotion()+" )");
         System.out.println("2: Focus Potion ( "+player.getfPotion()+" )");
         System.out.println("3: Back");
@@ -101,13 +104,16 @@ public class Menu {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What do you want to do ?");
-        System.out.println("1: Explore");
+        System.out.println("1: Explore (Fight an enemy,Progress the Stage)");
         System.out.println("2: Search the area");
-        System.out.println("3: Travel");
+        System.out.println("3: Travel (go to another Stage, reset Stage progress)");
         int i = sc.nextInt();
 
 
         if (i == 1) {
+            System.out.println(" ");
+            System.out.println("You follow the path further until you encounter an enemy defend yourself!");
+            System.out.println(" ");
             Combat.fight(player);
 
         } else if (i == 2) {
@@ -139,9 +145,9 @@ public class Menu {
 
         System.out.println("What do you want to do ?");
 
-        System.out.println("1: Rest");
-        System.out.println("2: Travel");
-        System.out.println("3: Search the Tempelgrounds");//wip
+        System.out.println("1: Rest (Heal up,Lvlup,Customize Potions)");
+        System.out.println("2: Travel (go to another Stage reset Stage progress)");
+        System.out.println("3: Search the Tempelgrounds(WIP)");//wip
         System.out.println("4: Quit ");
         boolean back = false;
         int a = sc.nextInt();
