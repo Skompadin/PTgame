@@ -5,8 +5,9 @@ public class Bandit extends Charakter {
 
     private int doge;
 
-    public Bandit(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz, int cfocus, int mfocus, int hpPotion, int fPotion, int maxPotions, Map world, int doge) {
-        super(name, job, str, dex, intel, chp, mhp, lvl, soulz, cfocus, mfocus, hpPotion, fPotion, maxPotions, world);
+    public Bandit(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz, int cfocus,
+                  int mfocus, int hpPotion, int mhPotion, int fPotion, int mfPotoin, int maxPotions, boolean upgradeItem, Map world, int doge) {
+        super(name, job, str, dex, intel, chp, mhp, lvl, soulz, cfocus, mfocus, hpPotion, mhPotion, fPotion, mfPotoin, maxPotions, upgradeItem, world);
         this.doge = doge;
     }
 

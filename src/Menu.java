@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 public class Menu {
 
@@ -22,13 +23,13 @@ public class Menu {
         } while (choice != 1 && choice != 2 && choice != 3);
 
         if (choice == 1) {
-            Knight pchar = new Knight(name,"Knight",30, 20, 10, 500, 500, 0, 200, 200, 200, 4,2,10, world,20);
+            Knight pchar = new Knight(name,"Knight",30, 20, 10, 500, 500, 0, 200, 200, 200, 5,5,3,3,8,false,world,20);
             pc.add(pchar);
         } else if (choice == 2) {
-            Bandit pchar = new Bandit(name,"Bandit", 20, 25, 15, 350, 350, 0, 200, 250, 250, 3,3,10,world, 20);
+            Bandit pchar = new Bandit(name,"Bandit", 20, 25, 15, 350, 350, 0, 200, 250, 250, 4,4,4,4,8,false,world,20);
             pc.add(pchar);
         } else {
-            Mage pchar = new Mage(name,"Mage", 15, 20, 30, 300, 300, 0, 200, 300, 300, 2,4,10,world,15);
+            Mage pchar = new Mage(name,"Mage",15, 20, 30, 300, 300, 0, 200, 300, 300, 3,3,5,5,8,false,world,15);
             pc.add(pchar);
         }
         return pc.get(0);
@@ -94,28 +95,35 @@ public class Menu {
     public static void nothomemenu(Charakter player) {
         Scanner sc = new Scanner(System.in);
 
-        boolean exit=false;
-
-        do {
-            System.out.println("What do you want to do ?");
-            System.out.println("1: Explore");
-            System.out.println("2: Search the area");
-            System.out.println("3: Travel");
-            int i = sc.nextInt();
+        System.out.println("What do you want to do ?");
+        System.out.println("1: Explore");
+        System.out.println("2: Search the area");
+        System.out.println("3: Travel");
+        int i = sc.nextInt();
 
 
-                if (i == 1) {
-                    Combat.fight(player);
+        if (i == 1) {
+            Combat.fight(player);
 
-                }else if (i == 2){
-                    //explore
-                }else {travel(player);
-                    exit=true;
-                }
-
-        }while(exit=false);
+        } else if (i == 2) {
+            search(player);
+        } else {
+            travel(player);
+        }
     }
+    public static void search(Charakter player){
+        Random rn = new Random();
+        int find = rn.nextInt(100) + 1;
+        if (find>20){
+            System.out.println("You stumble upon an enemy");
+            Combat.fight(player);
+        }else {
+            System.out.println("You find 300 Soulz");
+            player.setSoulz(player.getSoulz()+300);
+        }
 
+
+    }
 
 
     public static void stagemenuhome(Charakter player){
@@ -129,7 +137,7 @@ public class Menu {
         System.out.println("4: Quit ");
         boolean back = false;
         int a = sc.nextInt();
-        do {
+
             if (a == 1) {
                 restmenu(player);
             } else if (a == 2) {
@@ -139,7 +147,51 @@ public class Menu {
             } else {
                 //quitgame
             }
-        }while(back);
+        }
+    public static void homesearch(Charakter player){
+        Scanner sc = new Scanner(System.in);
+
+        if (player instanceof Knight){
+            System.out.println("You find an old Shrine to a long forgotten God. ");
+            System.out.println("1: Pray");
+            System.out.println("2: Back");
+        }else if (player instanceof Bandit){
+            System.out.println("You find a ornate hidden Chest with a strong lock on it. ");
+            System.out.println("1: Open the Chest");
+            System.out.println("2: Back");
+        }else{
+            System.out.println("You find old Book with letters that seem older that time itself");
+            System.out.println("1: Read the Book");
+            System.out.println("2: Back");
+        }
+        int a = sc.nextInt();
+        if (a==1){
+            if (player instanceof Knight){
+                    if (player.isUpgradeItem()){
+                    System.out.println("You hear a soft but stern voice in your head: ");
+                    System.out.println("Thou that hath befall upon mine shrine" );
+                    System.out.println("and hath returned to me what is rightfully mine" );
+                    System.out.println("art chosen to carry mine light into the land that hath forgotten it.");
+                    System.out.println("Take up thy sword an vanquish the darkness that hath choked the light from this world.");
+                    System.out.println("With mine blessing as thy strength and mine light as thy guide");
+                    System.out.println("thou shall  confound the eternal night and shall see the sun rise once again");
+                    }else{
+                        System.out.println("Your prayers remain unheard maybe something is missing");
+                    }
+            }else if (player instanceof Bandit){
+                System.out.println("You find a ornate hidden Chest with a strong lock on it. ");
+                System.out.println("1: Open the Chest");
+                System.out.println("2: Back");
+            }else {
+                System.out.println("You find old Book with letters that seem older that time itself");
+                System.out.println("1: Read the Book");
+                System.out.println("2: Back");
+            }
+        }
+
+
+
+
     }
 
     public static void restmenu(Charakter player){
@@ -156,11 +208,10 @@ public class Menu {
             if (a==1){
                 lvlup(player);
             } else if (a==2) {
-                //conigpotion();
+                player.potionconfig();
             }else {
                 end = true;
             }
-
         }while(end == false);
     }
 

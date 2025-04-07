@@ -6,8 +6,9 @@ public class Mage extends Charakter {
 
     private int regen;
 
-    public Mage(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl, int soulz, int cfocus, int mfocus, int hpPotion, int fPotion, int maxPotions, Map world, int regen) {
-        super(name, job, str, dex, intel, chp, mhp, lvl, soulz, cfocus, mfocus, hpPotion, fPotion, maxPotions, world);
+    public Mage(String name, String job, int str, int dex, int intel, int chp, int mhp,
+                int lvl, int soulz, int cfocus, int mfocus, int hpPotion, int mhPotion, int fPotion, int mfPotoin, int maxPotions, boolean upgradeItem, Map world, int regen) {
+        super(name, job, str, dex, intel, chp, mhp, lvl, soulz, cfocus, mfocus, hpPotion, mhPotion, fPotion, mfPotoin, maxPotions, upgradeItem, world);
         this.regen = regen;
     }
 
@@ -47,6 +48,7 @@ public class Mage extends Charakter {
         int admg;
         int absorb = ((Mage)player).getRegen();
         plusfocus = (int)dmg;
+
         if (def){
             plusfocus=(int)dmg*2;
             dmg = dmg*0.25;
@@ -85,14 +87,5 @@ public class Mage extends Charakter {
             System.out.println(player.getName() + " blasts " + bla.getName() + " for " + blastdmg + " damage. ");
             bla.setHp(blastdmg);
         }
-
-
-
     }
-
-
-
-
-
-
 }

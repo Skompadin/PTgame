@@ -5,6 +5,7 @@ public class Combat {
 
     public static void fight(Charakter player) {
     boolean def = false;
+    //explain mog gen
     Mob trash = Mob.mobgen(player);
     Boss boss = Boss.bossgen(player);
     Mob mob1;
@@ -50,12 +51,9 @@ public class Combat {
                             }else{
                                 def= ((Mage)player).skillmenuMage(player, mob1);
                             }
-                    } else {
-                        int p = Test.potionchoice(player);
-                        if (p < 3) {
-                            menuend = false;
-                        }
-                    }
+                                } else {
+                                    Menu.potionchoice(player);
+                                }
                 } while (menuend == false);
 
                 System.out.println(" ");

@@ -25,7 +25,7 @@ public class Main {
         System.out.println("You are at "+ player.getWorld().getPlace().getName());
         Menu.placemenu(player);
 
-    }while(exit==false);
+    }while(!exit);
 
 
 
