@@ -31,12 +31,14 @@ public class Mage extends Charakter {
     public boolean skillmenuMage(Charakter player, Mob mob1){
         Scanner sc = new Scanner(System.in);
         boolean def = false;
-        System.out.println("1: Shield");
+        System.out.println("1: Shield (defensive skill )");
         System.out.println("2: Soul Blast (60fp)");
         System.out.println("3: Chaos Barrage (120fp)");
         int a = sc.nextInt();
 
-        if (a == 1){def=true;
+        if (a == 1){
+            def=true;
+            System.out.println(player.getName() + " raises an arcane barrier");
         }else if (a==2){
             if (player.getCfocus()>59){
             soulblast(player, mob1);

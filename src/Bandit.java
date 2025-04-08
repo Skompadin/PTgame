@@ -27,12 +27,14 @@ public class Bandit extends Charakter {
     public boolean skillmenuBandit(Charakter player, Mob mob1){
         Scanner sc = new Scanner(System.in);
         boolean def = false;
-        System.out.println("1: Doge");
+        System.out.println("1: Doge(defensive skill)");
         System.out.println("2: Twinstrike (70fp)");
         System.out.println("3: Hidden Blade (90fp)");
         int a = sc.nextInt();
 
-        if (a == 1){def=true;
+        if (a == 1){
+            def=true;
+            System.out.println(player.getName() + " concentrates on avoiding the next attack");
             }else if (a==2){
             if (player.getCfocus()>69){
                 twinstrike(player, mob1);

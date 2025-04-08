@@ -74,19 +74,29 @@ public class Charakter {
         // using a health potion restores the Characters current hp "chp"
         // but not over the Max hp "mhp"
     public void potionheal() {
-        int heal=50;
+        int heal=100;
+        int healed;
+
         if (heal + this.chp > this.mhp) {
             this.chp = this.mhp;
+            healed = this.mhp - this.chp;
         }   else {this.chp = this.chp+heal;
+            healed = 100;
             }
+
+        System.out.println("you restored your Health by "+healed+" points." );
     }
         // same as potionheal but for focus
     public void potionfocus() {
-        int plusfocus=50;
+        int plusfocus=100;
+        int restored;
         if (plusfocus + this.cfocus > this.mfocus) {
+            restored=this.mfocus - this.cfocus;
             this.cfocus = this.mfocus;
         }   else {this.cfocus = this.cfocus+plusfocus;
+            restored = 100;
         }
+        System.out.println("you restored your Health by "+restored+" points." );
     }
 
     public void setChp(int chp) {

@@ -56,36 +56,57 @@ public class Menu {
     }
         //choose actions in combat
     public static int  combatmenu1 (Charakter player){
-
+        int action;
         Scanner sc = new Scanner(System.in);
-
+        do {
         System.out.println("1 Attack");
         System.out.println("2 Skill");
         System.out.println("3 Potions");
 
-        int action = sc.nextInt();
+        action = sc.nextInt();
+        if (action!=1 && action!=2 && action!=3){
+            System.out.println("Not valid option try again");
+        }
 
+        }while(action!=1 && action!=2 && action!=3);
         return action;
     }
 
         //drink potions to restore health or focus
-    public static void potionchoice(Charakter player){
+    public static boolean potionchoice(Charakter player){
         Scanner sc = new Scanner(System.in);
+        boolean end;
         System.out.println(" ");
         System.out.println("1: Health Potion ( "+player.getHpPotion()+" )");
         System.out.println("2: Focus Potion ( "+player.getfPotion()+" )");
         System.out.println("3: Back");
         int potion = sc.nextInt();
         if(potion==1){
-            if (player.getHpPotion()>0){
-                player.setHpPotion(player.getHpPotion()-1);
-                player.potionheal();
-            }else if(player.getfPotion() > 0) {
+
+                if (player.getHpPotion()>0){
+                    player.setHpPotion(player.getHpPotion()-1);
+                    player.potionheal();
+                    end =true;
+                }else{
+                    System.out.println("You are out of Health Potions");
+                    end=false;
+                }
+        } else if (potion == 2) {
+                if(player.getfPotion() > 0) {
                     player.setfPotion(player.getfPotion()- 1);
                     player.potionfocus();
+                    end=true;
+                }else{
+                    System.out.println("You are out of Focus Potions");
+                    end=false;}
 
+        }else{
+            end=false;
+        }
 
-            }}}
+        return end;
+        }
+
 
 
             //opens menus depended on stage
@@ -163,7 +184,7 @@ public class Menu {
                 player.setExit(true);
             }
         }
-        // when conditoins are met player can upgrade their class for exaple
+        // when conditions are met player can upgrade their class for exaple
         // from Knight to Paladin (wip)
     public static void homesearch(Charakter player){
         Scanner sc = new Scanner(System.in);
@@ -185,25 +206,30 @@ public class Menu {
         if (a==1){
             if (player instanceof Knight){
                     if (player.isUpgradeItem()){
-                    System.out.println("You hear a soft but stern voice in your head: ");
-                    System.out.println("Thou that hath befall upon mine shrine" );
-                    System.out.println("and hath returned to me what is rightfully mine" );
-                    System.out.println("art chosen to carry mine light into the land that hath forgotten it.");
-                    System.out.println("Take up thy sword an vanquish the darkness that hath choked the light from this world.");
-                    System.out.println("With mine blessing as thy strength and mine light as thy guide");
-                    System.out.println("thou shall shatter the eternal night thou and shall see the sun rise once again");
-                    System.out.println(" ");
-                    System.out.println("You have become a Paladin bound to the Goddess of light and vengeance ");
-                    System.out.println(" Your might has increased");
-                    player = ((Paladin)player);
-                    ((Paladin) player).setFaith(3);
+                        System.out.println("You hear a soft but stern voice in your head: ");
+                        System.out.println("Thou that hath befall upon mine shrine" );
+                        System.out.println("and hath returned to me what is rightfully mine" );
+                        System.out.println("art chosen to carry mine light into the land that hath forgotten it.");
+                        System.out.println("Take up thy sword an vanquish the darkness that hath choked the light from this world.");
+                        System.out.println("With mine blessing as thy strength and mine light as thy guide");
+                        System.out.println("thou shall shatter the eternal night thou and shall see the sun rise once again");
+                        System.out.println(" ");
+                        System.out.println("You have become a Paladin bound to the Goddess of light and vengeance ");
+                        System.out.println(" Your might has increased");
+                        player = ((Paladin)player);
+                        ((Paladin) player).setFaith(3);
                     }else{
                         System.out.println("Your prayers remain unheard maybe something is missing");
                     }
             }else if (player instanceof Bandit){
-                System.out.println("You find a ornate hidden Chest with a strong lock on it. ");
-                System.out.println("1: Open the Chest");
-                System.out.println("2: Back");
+                    if (player.isUpgradeItem()){
+                        System.out.println("bla bla");
+                    }
+
+
+
+
+
             }else {
                 System.out.println("You find old Book with letters that seem older that time itself");
                 System.out.println("1: Read the Book");
@@ -284,6 +310,8 @@ public class Menu {
         }while (close=false);
 
     }
+public void logo(){
+           /*
 
 
 
@@ -293,15 +321,8 @@ public class Menu {
 
 
 
-
-
-
-
-
-
-
-
-
-
+            */
 
 }
+}
+

@@ -22,7 +22,7 @@ public class Mob {
         int str=0;
         int lvl = 0;
         int count =player.getWorld().getPlace().getCencounter();
-        if (player.getWorld().getPlace().getName()=="Undead Castle"){
+        if (player.getWorld().getPlace() == player.getWorld().getLvlone()){
             name = "Husk";
             hp = 400+(count*50);
             str = 50 + (count*10);

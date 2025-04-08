@@ -19,7 +19,7 @@ public class Knight extends Charakter {
     public boolean skillmenuKnight(Charakter player, Mob mob1){
         Scanner sc = new Scanner(System.in);
         boolean def = false;
-        System.out.println("1: Brace");
+        System.out.println("1: Brace (defensive skill )");
         System.out.println("2: Heavy Blow (50fp)");
         System.out.println("3: Juggernaut (80fp)");
         int a = sc.nextInt();
@@ -49,7 +49,8 @@ public class Knight extends Charakter {
         double dmg = mob1.getStr();
         if (mob1.isCharged()){dmg=dmg*2;}
         int prot = ((Knight)player).getArmor()*2;
-        if (def){dmg=dmg-(dmg/100)*(prot*2);
+        if (def){
+            dmg=dmg-(dmg/100)*(prot*2);
         }else{dmg=dmg-(dmg/100)*prot;}
         System.out.println(mob1.getName() + " attacks " + player.getName() + " for " + (int)dmg + " Damage");
         player.setChp(player.getChp() - (int)dmg);
@@ -62,10 +63,10 @@ public class Knight extends Charakter {
         int dmg = player.basicAttack(player)*2;
         if (didcrit) {
             dmg = dmg*2;
-            System.out.println(player.getName() + " attacks " + mob1.getName() + " for " + dmg + " critical damage. ");
+            System.out.println(player.getName() + " attacks with a heavy blow " + mob1.getName() + " for " + dmg + " critical damage. ");
             mob1.setHp(dmg);
         }else {
-            System.out.println(player.getName() + " attacks " + mob1.getName() + " for " + dmg + " damage. ");
+            System.out.println(player.getName() + " attacks with a heavy blow " + mob1.getName() + " for " + dmg + " damage. ");
             mob1.setHp(dmg);
         }
     }

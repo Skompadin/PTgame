@@ -95,7 +95,9 @@ public class Combat {
             if (player.getChp()<1) {
                 System.out.println("You Died");
                 System.out.println("Your Body reforms at the last place you rested and you lost your souls");
+                System.out.println("Your Progress on "+player.getWorld().getPlace()+" was reset");
                 player.setChp(player.getMhp());
+                player.getWorld().getPlace().setCencounter(0);
                 player.getWorld().setPlace(player.getWorld().getHome());
                 // combat aftermath if player wins
             }else{
