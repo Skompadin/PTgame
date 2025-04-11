@@ -20,6 +20,7 @@ public class Main {
 
 
         do {
+
             System.out.println("You are at "+ player.getWorld().getPlace().getName());
             System.out.println(" ");
             System.out.println(player.getName() +" the "+ player.getJob()+ " Hp: " + player.getChp() +" Focus:"+player.getCfocus());

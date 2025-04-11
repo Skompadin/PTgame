@@ -4,8 +4,10 @@ public class Paladin extends Knight{
     private int faith;
     private int invocations;
 
-    public Paladin(String name, String job, int str, int dex, int intel, int chp, int mhp, int lvl,
-                   int soulz, int cfocus, int mfocus, int hpPotion, int mhPotion, int fPotion,
+    public Paladin(String name, String job, int str, int dex,
+                   int intel, int chp, int mhp, int lvl,
+                   int soulz, int cfocus, int mfocus,
+                   int hpPotion, int mhPotion, int fPotion,
                    int mfPotoin, int maxPotions, boolean upgradeItem,
                    Map world, int armor, int faith, int invocations) {
         super(name, job, str, dex, intel, chp, mhp, lvl, soulz, cfocus, mfocus,

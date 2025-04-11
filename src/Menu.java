@@ -186,9 +186,9 @@ public class Menu {
         }
         // when conditions are met player can upgrade their class for exaple
         // from Knight to Paladin (wip)
-    public static void homesearch(Charakter player){
+    public static Charakter homesearch(Charakter player){
         Scanner sc = new Scanner(System.in);
-
+        Charakter pc;
         if (player instanceof Knight){
             System.out.println("You find an old Shrine to a long forgotten God. ");
             System.out.println("1: Pray");
@@ -216,13 +216,17 @@ public class Menu {
                         System.out.println(" ");
                         System.out.println("You have become a Paladin bound to the Goddess of light and vengeance ");
                         System.out.println(" Your might has increased");
-                        player = ((Paladin)player);
-                        ((Paladin) player).setFaith(3);
+                        pc = new Paladin(player.getName(),"Paladin", player.getStr(), player.getDex(), player.getIntel(), player.getChp(), player.getMhp(),
+                                                player.getLvl(), player.getSoulz(), player.getCfocus(), player.getMfocus(), player.getHpPotion(), player.getMhPotion(), player.getfPotion(),
+                                                player.getMfPotion(), player.getMaxPotions(),false,player.getWorld(), ((Knight) player).getArmor(), 5,5);
+                        System.out.println();
                     }else{
+                        pc = player;
                         System.out.println("Your prayers remain unheard maybe something is missing");
                     }
             }else if (player instanceof Bandit){
                     if (player.isUpgradeItem()){
+
                         System.out.println("bla bla");
                     }
 
@@ -235,10 +239,13 @@ public class Menu {
                 System.out.println("1: Read the Book");
                 System.out.println("2: Back");
             }
+
+
+
         }
 
 
-
+        return pc;
 
     }
     //when rest gets choosen in menu on home stage
